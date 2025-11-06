@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Загрузка файла в n8n</title>
+</head>
+<body>
+  <h1>Загрузить файл для теста (n8n Webhook)</h1>
+  <form action="https://ai.agent-studio.ru/webhook-test/077ad695-e1f2-451d-aa1e-000e50f63f52" method="post" enctype="multipart/form-data">
+    <input type="file" name="file" required>
+    <button type="submit">Загрузить</button>
+  </form>
+  <p>После тестирования замените ссылку <b>action</b> на production-url вашего Webhook в n8n.</p>
+</body>
+</html>
