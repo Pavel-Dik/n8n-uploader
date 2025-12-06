@@ -2,20 +2,72 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Загрузка файла в n8n</title>
+  <title>Загрузка файла в n8n (защищено)</title>
+  <style>
+    body { font-family: sans-serif; }
+    #upload-section { display: none; }
+  </style>
 </head>
 <body>
-  <h1>Загрузить файл для теста (n8n Webhook)</h1>
+  <h1>Доступ по паролю</h1>
 
-  <!-- Нажми в ноде Webhook кнопку "Listen for test event" перед отправкой -->
-  <form
-    action="https://ai.agent-studio.ru/webhook/077ad695-e1f2-451d-aa1e-000e50f63f52"
-    method="post"
-    enctype="multipart/form-data">
-    <input type="file" name="file" required>
-    <button type="submit">Загрузить</button>
-  </form>
+  <div id="login-section">
+    <label>
+      Пароль:
+      <input type="password" id="password-input">
+    </label>
+    <button id="login-button">Войти</button>
+    <p id="login-error" style="color:red; display:none;">Неверный пароль</p>
+  </div>
 
-  <p>Для постоянной работы включи воркфлоу (Active) и используй <b>Production URL</b>.</p>
+  <div id="upload-section">
+    <h2>Загрузить файл для теста (n8n Webhook)</h2>
+
+    <!-- Нажми в ноде Webhook кнопку "Listen for test event" перед отправкой -->
+    <form
+      action="https://ai.agent-studio.ru/webhook/077ad695-e1f2-451d-aa1e-000e50f63f52"
+      method="post"
+      enctype="multipart/form-data">
+
+      <label>
+        Ваш e-mail:
+        <input type="email" name="email" required>
+      </label>
+      <br><br>
+
+      <label>
+        Файл:
+        <input type="file" name="file" required>
+      </label>
+      <br><br>
+
+      <button type="submit">Загрузить</button>
+    </form>
+
+    <p>Для постоянной работы включи воркфлоу (Active) и используй <b>Production URL</b>.</p>
+  </div>
+
+  <script>
+    (function () {
+      // ПОМЕНЯЙ пароль ниже на свой
+      const PASSWORD = "myStrongPass123";
+
+      const loginBtn = document.getElementById("login-button");
+      const passwordInput = document.getElementById("password-input");
+      const errorEl = document.getElementById("login-error");
+      const loginSection = document.getElementById("login-section");
+      const uploadSection = document.getElementById("upload-section");
+
+      loginBtn.addEventListener("click", function () {
+        const value = passwordInput.value;
+        if (value === PASSWORD) {
+          loginSection.style.display = "none";
+          uploadSection.style.display = "block";
+        } else {
+          errorEl.style.display = "block";
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
